@@ -46,6 +46,10 @@ def house_play(cur_hand, p_sum, deck, i):
             cur_hand.append(deck[i])
             i += 1
             house_sum = calculate_house_sum(cur_hand, house_sum)
+    elif house_sum > p_sum:
+        print("House sum: " + str(house_sum) + ". Your sum: " + str(p_sum))
+        print("You lose")
+        return
     else:
         while house_sum < 16 and house_sum < p_sum:
             cur_hand.append(deck[i])
@@ -105,7 +109,10 @@ def play_game():
         if choice == "h":
             player_hand.append(deck[i])
             cur_card = deck[i]
-            print("You drew a " + cur_card[0] + " of " + cur_card[1])
+            if int(cur_card[0]) == 1:
+                print("You drew a Ace of " + cur_card[1])
+            else:
+                print("You drew a " + cur_card[0] + " of " + cur_card[1])
             i += 1
             if int(cur_card[0]) == 1:
                 player_sum = player_sum + ace_value()
